@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { Typography } from '@mui/material';
+import MuiProvider from './theme/MuiProvider';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	return (
+		<MuiProvider mode={'dark'}>
+			<div className="App">
+				<Typography
+					variant="h1"
+					sx={({ palette }) => ({ color: palette.primary.main })}
+				>
+					Create React App
+				</Typography>
+				<Typography variant="h4">Primary text</Typography>
+				<Typography
+					variant="h4"
+					color="text.secondary"
+				>
+					Secondary text
+				</Typography>
+			</div>
+		</MuiProvider>
+	);
 }
 
 export default App;
