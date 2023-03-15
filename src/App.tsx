@@ -1,28 +1,33 @@
-import React from 'react';
-import './App.css';
-import { Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, PaletteMode, Stack } from '@mui/material';
 import MuiProvider from './theme/MuiProvider';
+import { Banner, Header } from './components';
 
 function App() {
-	return (
-		<MuiProvider mode={'dark'}>
-			<div className="App">
-				<Typography
-					variant="h1"
-					sx={({ palette }) => ({ color: palette.primary.main })}
-				>
-					Create React App
-				</Typography>
-				<Typography variant="h4">Primary text</Typography>
-				<Typography
-					variant="h4"
-					color="text.secondary"
-				>
-					Secondary text
-				</Typography>
-			</div>
-		</MuiProvider>
-	);
+  const [mode, setMode] = useState<PaletteMode>('light');
+
+  const handleThemeChange = () => {
+    if (mode === 'light') {
+      setMode('dark');
+    } else {
+      setMode('light');
+    }
+  };
+
+  return (
+    <MuiProvider mode={mode}>
+      <Stack>
+        <Banner mode={mode} />
+        <Box
+          display={'flex'}
+          justifyContent={'center'}
+          sx={{ width: { xs: '89%', sm: 570 }, margin: { xs: '-153px auto', sm: '-224px auto' } }}
+        >
+          <Header OnClick={handleThemeChange} />
+        </Box>
+      </Stack>
+    </MuiProvider>
+  );
 }
 
 export default App;
